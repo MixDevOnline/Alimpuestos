@@ -30,8 +30,6 @@
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
     <!-- Own Style -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Toastify CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/toastify.min.css">
 </head>
 
 <body>
@@ -168,47 +166,10 @@
             </div>
         </div>
     </div>
-    <!-- Scripts -->
-    <script src="assets/js/toastify-js.js"></script>
     <!-- Custom Scripts -->
     <script src="assets/js/dolar.js"></script>
     <script src="assets/js/calculadora.js"></script>
     <script src="assets/js/main.js"></script>
-    <script>
-        const registerServiceWorker = async () => {
-            if ('serviceWorker' in navigator) {
-                try {
-                    const registration = await navigator.serviceWorker.register(
-                        'sw.js',
-                        {
-                            scope: './',
-                        }
-                    );
-                    if (registration.active) {
-                        console.log('Service worker active');
-                        if(!localStorage.getItem("offline")) {
-                            localStorage.setItem("offline", true);
-                            Toastify({
-                                text: "Ya podes usar AliExpressito de manera offline!",
-                                duration: 3000,
-                                close: true,
-                                gravity: "top", // `top` or `bottom`
-                                position: "right", // `left`, `center` or `right`
-                                stopOnFocus: true, // Prevents dismissing of toast on hover
-                                style: {
-                                    background: "#fd9900",
-                                }
-                            }).showToast();
-                        }
-                    }
-                } catch (error) {
-                    console.error(`Registration failed with ${error}`);
-                }
-            }
-        };
-
-        registerServiceWorker();
-    </script>
 </body>
 
 </html>
