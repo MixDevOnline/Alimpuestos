@@ -1,3 +1,19 @@
+html, body {
+    background-color: #e4e4e4;
+}
+
+.is-horizontal-center {
+    justify-content: center;
+}
+
+p.help {
+  font-size: 10.5pt;
+}
+
+p.is-success.dark {
+  color: #0fa723;
+}
+
 .loader-wrapper {
   position: absolute;
   top: 48px;

@@ -28,18 +28,8 @@
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="assets/css/solid.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-    <!-- Loader Style -->
-    <link rel="stylesheet" href="assets/css/loader.css">
-    <style>
-        html,
-        body {
-            background-color: #e4e4e4;
-        }
-
-        .is-horizontal-center {
-            justify-content: center;
-        }
-    </style>
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -84,8 +74,8 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="help is-success">El valor estimado del dólar de este banco a la fecha (<span
-                                id="fecha">00/00/0000</span>) es de AR$ <span id="dolar">0</span>.</p>
+                        <p class="help is-success dark" >El valor estimado del dólar de este banco a la fecha (<span
+                                id="fecha">00/00/0000</span>) es de AR$ <span id="dolar">0</span></p>
                         <div class="divider">Costo de Envío</div>
                         <div class="field has-addons has-addons-centered">
                             <p class="control has-icons-left">
@@ -140,7 +130,7 @@
                         <div class="divider">Detalles</div>
                         <ul class="box has-text-left">
                             <li class="is-flex is-justify-content-space-between">
-                                <span>Monto sin impuestos (+ envío)</span>
+                                <span>Monto sin impuestos (envío incluido)</span>
                                 <span class="is-pulled-right" id="montoSinImpuestos">$0</span>
                             </li>
                             <hr>
