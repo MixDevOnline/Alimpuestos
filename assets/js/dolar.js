@@ -1,6 +1,6 @@
 // Función para realizar la solicitud GET a la API
 function fetchDolarValues() {
-    fetch('https://horizontalinsidiousrepo.mixdevcode.repl.co/valores')
+    fetch('https://horizontalinsidiousrepo.mixdevcode.repl.co/valores', { mode: 'no-cors' })
         .then(response => response.json())
         .then(data => {
             // Almacenar los valores en el Local Storage
