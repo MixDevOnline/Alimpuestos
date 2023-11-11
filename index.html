@@ -7,7 +7,8 @@
     <title>AliExpressito - Calculadora de Impuestos de AliExpress</title>
     <!-- Meta Tags -->
     <meta property="og:title" content="AliExpressito - Calculadora de Impuestos de AliExpress">
-    <meta property="og:description" content="Calculadora de Impuestos de la plataforma AliExpress. Calcula cuánto vas a pagar por un producto, incluyendo impuestos y tasas.">
+    <meta property="og:description"
+        content="Calculadora de Impuestos de la plataforma AliExpress. Calcula cuánto vas a pagar por un producto, incluyendo impuestos y tasas.">
     <meta property="og:image" content="https://mixdevcode.github.io/AliExpressito/assets/img/meta.png">
     <meta property="og:url" content="https://mixdevcode.github.io/AliExpressito">
     <!-- Google Meta Tags -->
@@ -22,14 +23,13 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="assets/css/bulma.min.css">
-    <!-- Own Style -->
-    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Bulma Divider -->
-    <link href="assets/css/bulma-divider.min.css"
-        rel="stylesheet">
+    <link href="assets/css/bulma-divider.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="assets/css/solid.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <!-- Loader Style -->
+    <link rel="stylesheet" href="assets/css/loader.css">
     <style>
         html,
         body {
@@ -55,124 +55,131 @@
                     </p>
                 </div>
                 <div class="card-content" style="background-color: #f5f5f5;">
-                    <p class="subtitle is-5">¿No sabes cuánto vas a terminar pagando por un producto?</p>
-                    <p class="subtitle is-6">Esta calculadora es la solución que buscas.</p>
-                    <div class="divider">Valor del Producto</div>
-                    <div class="field has-addons has-addons-centered">
-                        <p class="control has-icons-left">
-                            <input class="input" name="valor" type="number" placeholder="0" value="0" step="0.01">
-                            <span class="icon is-small is-left">
-                                <i class="fa-solid fa-dollar-sign"></i>
-                            </span>
-                        </p>
-                        <p class="control">
-                            <a class="button is-static">
-                                USD
-                            </a>
-                        </p>
+                    <div class="loader-wrapper is-active" id="loader">
+                        <div class="loader is-loading"></div>
                     </div>
-                    <p class="help is-success">El valor del dólar oficial a la fecha <span
-                            id="fecha">(00/00/0000)</span> es de AR$ <span id="dolar">0</span>.</p>
-                    <div class="divider">Costo de Envío</div>
-                    <div class="field has-addons has-addons-centered">
-                        <p class="control has-icons-left">
-                            <input class="input" type="number" name="costo" placeholder="0" value="0" step="0.01">
-                            <span class="icon is-small is-left">
-                                <i class="fa-solid fa-dollar-sign"></i>
-                            </span>
-                        </p>
-                        <p class="control">
-                            <a class="button is-static">
-                                USD
-                            </a>
-                        </p>
-                    </div>
-                    <p class="help is-info mb-3">Si el envío es gratis, escriba 0.</p>
-                    <div class="divider">¿Ha realizado más de 12 compras este año?</div>
-                    <div class="field">
-                        <div class="control">
-                            <div class="select">
-                                <select name="anuales">
-                                    <option value="no" selected>No</option>
-                                    <option value="si">Si</option>
-                                </select>
+                    <section id="calculadora" style="display: none;">
+                        <p class="subtitle is-5">¿No sabes cuánto vas a terminar pagando por un producto?</p>
+                        <p class="subtitle is-6">Esta calculadora es la solución que buscas.</p>
+                        <div class="divider">Valor del Producto</div>
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control has-icons-left">
+                                <input class="input" name="valor" type="number" placeholder="0" value="0" step="0.01">
+                                <span class="icon is-small is-left">
+                                    <i class="fa-solid fa-dollar-sign"></i>
+                                </span>
+                            </p>
+                            <p class="control">
+                                <a class="button is-static">
+                                    USD
+                                </a>
+                            </p>
+                        </div>
+                        <div class="divider">Banco a usar</div>
+                        <div class="field">
+                            <div class="control">
+                                <div class="select">
+                                    <select id="bancoSelect" name="dolar" onchange="changeDolar()">
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="divider">Tasa del Correo</div>
-                    <div class="field has-addons has-addons-centered">
-                        <p class="control has-icons-left">
-                            <input class="input" type="number" name="tasa" id="tasa" placeholder="0" value="0"
-                                step="0.01">
-                            <span class="icon is-small is-left">
-                                <i class="fa-solid fa-dollar-sign"></i>
-                            </span>
-                        </p>
-                        <p class="control">
-                            <a class="button is-static">
-                                ARS
-                            </a>
-                        </p>
-                    </div>
-                    <p class="help is-danger mb-3">Este valor está predeterminado a AR$ <span id="tasaSpan">0</span>.
-                        Solo cambie este valor si es necesario.</p>
-                    <div class="field">
-                        <button class="button is-fullwidth" style="background-color: #fd9900; color: white;"
-                            onclick="calcularTotal()">Calcular</button>
-                    </div>
-                    <div class="divider">Resultado</div>
-                    <p class="title is-5">Total a Pagar</p>
-                    <p class="title is-2" id="total" style="color: #fd9900;">AR$ 0</h2>
-                    <div class="divider">Detalles</div>
-                    <ul class="box has-text-left">
-                        <li class="is-flex is-justify-content-space-between">
-                            <span>Monto sin impuestos (+ envío)</span>
-                            <span class="is-pulled-right" id="montoSinImpuestos">$0</span>
-                        </li>
-                        <hr>
-                        <li class="is-flex is-justify-content-space-between">
-                            <span>+ Imp. PAIS (30%)</span>
-                            <span class="is-pulled-right" id="impPais">$0</span>
-                        </li>
-                        <hr>
-                        <li class="is-flex is-justify-content-space-between">
-                            <span>+ Imp. Ganancias (45%)</span>
-                            <span class="is-pulled-right" id="impGanancia">$0</span>
-                        </li>
-                        <hr>
-                        <li class="is-flex is-justify-content-space-between">
-                            <span>+ Imp. Bienes Personales (25%)</span>
-                            <span class="is-pulled-right" id="impBienesPersonales">$0</span>
-                        </li>
-                        <hr>
-                        <li class="is-flex is-justify-content-space-between">
-                            <span>+ Monto del Excedente</span>
-                            <span class="is-pulled-right" id="excedente">$0</span>
-                        </li>
-                    </ul>
-                    <br>
-                    <!-- Footer -->
-                    <p>Hecho con mucho <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="#ff2900"
-                            class="bi bi-heart-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                        </svg> por <a href="https://github.com/mixdevcode" target="_blank">MixDevCode</a></p>
+                        <p class="help is-success">El valor estimado del dólar de este banco a la fecha (<span
+                                id="fecha">00/00/0000</span>) es de AR$ <span id="dolar">0</span>.</p>
+                        <div class="divider">Costo de Envío</div>
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control has-icons-left">
+                                <input class="input" type="number" name="costo" placeholder="0" value="0" step="0.01">
+                                <span class="icon is-small is-left">
+                                    <i class="fa-solid fa-dollar-sign"></i>
+                                </span>
+                            </p>
+                            <p class="control">
+                                <a class="button is-static">
+                                    USD
+                                </a>
+                            </p>
+                        </div>
+                        <p class="help is-info mb-3">Si el envío es gratis, escriba 0.</p>
+                        <div class="divider">¿Ha realizado más de 12 compras este año?</div>
+                        <div class="field">
+                            <div class="control">
+                                <div class="select">
+                                    <select name="anuales">
+                                        <option value="no" selected>No</option>
+                                        <option value="si">Si</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider">Tasa del Correo</div>
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control has-icons-left">
+                                <input class="input" type="number" name="tasa" id="tasa" placeholder="0" value="0"
+                                    step="0.01">
+                                <span class="icon is-small is-left">
+                                    <i class="fa-solid fa-dollar-sign"></i>
+                                </span>
+                            </p>
+                            <p class="control">
+                                <a class="button is-static">
+                                    ARS
+                                </a>
+                            </p>
+                        </div>
+                        <p class="help is-danger mb-3">Este valor está predeterminado a AR$ <span
+                                id="tasaSpan">0</span>.
+                            Solo cambie este valor si es necesario.</p>
+                        <div class="field">
+                            <button class="button is-fullwidth" style="background-color: #fd9900; color: white;"
+                                onclick="calcularTotal()">Calcular</button>
+                        </div>
+                        <div class="divider">Resultado</div>
+                        <p class="title is-5">Total a Pagar</p>
+                        <p class="title is-2" id="total" style="color: #fd9900;">AR$ 0</h2>
+                        <div class="divider">Detalles</div>
+                        <ul class="box has-text-left">
+                            <li class="is-flex is-justify-content-space-between">
+                                <span>Monto sin impuestos (+ envío)</span>
+                                <span class="is-pulled-right" id="montoSinImpuestos">$0</span>
+                            </li>
+                            <hr>
+                            <li class="is-flex is-justify-content-space-between">
+                                <span>+ Imp. PAIS (30%)</span>
+                                <span class="is-pulled-right" id="impPais">$0</span>
+                            </li>
+                            <hr>
+                            <li class="is-flex is-justify-content-space-between">
+                                <span>+ Imp. Ganancias (45%)</span>
+                                <span class="is-pulled-right" id="impGanancia">$0</span>
+                            </li>
+                            <hr>
+                            <li class="is-flex is-justify-content-space-between">
+                                <span>+ Imp. Bienes Personales (25%)</span>
+                                <span class="is-pulled-right" id="impBienesPersonales">$0</span>
+                            </li>
+                            <hr>
+                            <li class="is-flex is-justify-content-space-between">
+                                <span>+ Monto del Excedente</span>
+                                <span class="is-pulled-right" id="excedente">$0</span>
+                            </li>
+                        </ul>
+                        <br>
+                        <!-- Footer -->
+                        <p>Hecho con mucho <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="#ff2900"
+                                class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                            </svg> por <a href="https://github.com/mixdevcode" target="_blank">MixDevCode</a></p>
                 </div>
+                </section>
             </div>
         </div>
     </div>
     <!-- Scripts -->
     <script src="assets/js/dolar.js"></script>
     <script src="assets/js/calculadora.js"></script>
-    <script>
-        var tasa = 2300;
-        document.getElementById('tasa').value = tasa;
-        document.getElementById('tasaSpan').textContent = tasa;
-        // Llamar a la función principal
-        updateDolarValueIfNeeded();
-        // Llamar a la función para calcular el valor inicial
-        calcularTotal();
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
