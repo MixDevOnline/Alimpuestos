@@ -31,3 +31,9 @@
 .is-loading {
   position: relative;
 }
+
+@media only screen and (max-width: 467px) {
+  .loader-wrapper {
+    top: 72px;
+  }
+}
