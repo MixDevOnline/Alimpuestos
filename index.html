@@ -186,17 +186,20 @@
                     );
                     if (registration.active) {
                         console.log('Service worker active');
-                        Toastify({
-                            text: "Ya podes usar AliExpressito de manera offline!",
-                            duration: 3000,
-                            close: true,
-                            gravity: "top", // `top` or `bottom`
-                            position: "right", // `left`, `center` or `right`
-                            stopOnFocus: true, // Prevents dismissing of toast on hover
-                            style: {
-                                background: "#fd9900",
-                            }
-                        }).showToast();
+                        if(!localStorage.getItem("offline")) {
+                            localStorage.setItem("offline", true);
+                            Toastify({
+                                text: "Ya podes usar AliExpressito de manera offline!",
+                                duration: 3000,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "#fd9900",
+                                }
+                            }).showToast();
+                        }
                     }
                 } catch (error) {
                     console.error(`Registration failed with ${error}`);
