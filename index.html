@@ -28,8 +28,10 @@
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="assets/css/solid.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-    <!-- Custom Style -->
+    <!-- Own Style -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/toastify.min.css">
 </head>
 
 <body>
@@ -74,8 +76,8 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="help is-success dark" >El valor estimado del dólar de este banco a la fecha (<span
-                                id="fecha">00/00/0000</span>) es de AR$ <span id="dolar">0</span></p>
+                        <p class="help is-success" style="font-size: 1px;">El valor estimado del dólar de este banco a
+                            la fecha (<span id="fecha">00/00/0000</span>) es de AR$ <span id="dolar">0</span>.</p>
                         <div class="divider">Costo de Envío</div>
                         <div class="field has-addons has-addons-centered">
                             <p class="control has-icons-left">
@@ -130,7 +132,7 @@
                         <div class="divider">Detalles</div>
                         <ul class="box has-text-left">
                             <li class="is-flex is-justify-content-space-between">
-                                <span>Monto sin impuestos (envío incluido)</span>
+                                <span>Monto sin impuestos (+ envío)</span>
                                 <span class="is-pulled-right" id="montoSinImpuestos">$0</span>
                             </li>
                             <hr>
@@ -167,9 +169,43 @@
         </div>
     </div>
     <!-- Scripts -->
+    <script src="assets/js/toastify-js.js"></script>
+    <!-- Custom Scripts -->
     <script src="assets/js/dolar.js"></script>
     <script src="assets/js/calculadora.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        const registerServiceWorker = async () => {
+            if ('serviceWorker' in navigator) {
+                try {
+                    const registration = await navigator.serviceWorker.register(
+                        'sw.js',
+                        {
+                            scope: './',
+                        }
+                    );
+                    if (registration.active) {
+                        console.log('Service worker active');
+                        Toastify({
+                            text: "Ya podes usar AliExpressito de manera offline!",
+                            duration: 3000,
+                            close: true,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "#fd9900",
+                            }
+                        }).showToast();
+                    }
+                } catch (error) {
+                    console.error(`Registration failed with ${error}`);
+                }
+            }
+        };
+
+        registerServiceWorker();
+    </script>
 </body>
 
 </html>
