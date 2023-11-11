@@ -1,35 +1,57 @@
-// Función para realizar la solicitud GET a la API
-function fetchDolarValues() {
-    fetch('https://horizontalinsidiousrepo.mixdevcode.repl.co/valores', { mode: 'no-cors' })
-        .then(response => response.json())
-        .then(data => {
-            // Almacenar los valores en el Local Storage
-            localStorage.setItem('dolarValues', JSON.stringify(data));
+// Función para realizar la solicitud JSONP a la API
+function fetchDolarValuesJSONP(callback) {
+    // Generar un nombre de función única
+    const callbackName = 'jsonpCallback_' + Math.round(100000 * Math.random());
 
-            // Llamar a la función para construir el select
-            buildDolarSelect();
-        })
-        .catch(error => console.error('Error al obtener los valores del dólar: ', error));
+    // Crear un script con la URL que incluye el nombre de la función de retorno
+    const script = document.createElement('script');
+    script.src = `https://horizontalinsidiousrepo.mixdevcode.repl.co/valores?callback=${callbackName}`;
+    document.body.appendChild(script);
+
+    // Definir la función de retorno que manejará los datos
+    window[callbackName] = function(data) {
+        // Llamar a la función de retorno proporcionada por el usuario
+        callback(data);
+
+        // Limpiar el script y la función global después de obtener los datos
+        document.body.removeChild(script);
+        delete window[callbackName];
+    };
 }
 
-// Función para obtener y llenar el select desde el Local Storage
-function buildDolarSelect() {
-    // Obtener los valores del dólar del Local Storage
-    const dolarValues = JSON.parse(localStorage.getItem('dolarValues'));
+// Función para obtener y llenar el select desde la respuesta JSONP
+function buildDolarSelect(data) {
+    // Almacenar los valores en el Local Storage
+    localStorage.setItem('dolarValues', JSON.stringify(data));
+
+    const fechaActual = new Date();
+    const formattedFecha = fechaActual.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: '2-digit' });
+
+    // Almacenar la fecha en el Local Storage
+    localStorage.setItem('ultFecha', formattedFecha);
+
+    // Obtener el elemento select
     const bancoSelect = document.getElementById('bancoSelect');
 
     // Verificar si hay datos disponibles y el elemento select existe
-    if (dolarValues && Array.isArray(dolarValues) && bancoSelect) {
+    if (data && Array.isArray(data) && bancoSelect) {
         // Limpiar el contenido actual del select
         bancoSelect.innerHTML = '';
 
         // Iterar sobre los datos y agregar opciones al select
-        dolarValues.forEach(value => {
+        data.forEach(value => {
             const option = document.createElement('option');
             option.value = value.value;
             option.text = value.name;
             bancoSelect.appendChild(option);
         });
+
+        // Remover el loader y mostrar el select
+        document.getElementById('loader').classList.remove('is-active');
+        document.getElementById('calculadora').style = "display: block;";
+        
+        // Llamar a la función de cambiar el dólar del span
+        changeDolar();
     }
 }
 
@@ -39,15 +61,15 @@ function shouldUpdateDolarValue() {
     const horaLimite = new Date(horaActual);
     horaLimite.setHours(15, 0, 0, 0); // Establecer la hora límite a las 15:00
 
-    return true;
+    return (horaActual >= horaLimite) || !localStorage.getItem('dolarValues');
 }
 
 // Función principal para actualizar el valor del dólar si es necesario
 function updateDolarValueIfNeeded() {
     if (shouldUpdateDolarValue()) {
-        fetchDolarValues();
+        fetchDolarValuesJSONP(buildDolarSelect);
     } else {
         // Llamar a la función para construir el select directamente
-        buildDolarSelect();
+        buildDolarSelect(JSON.parse(localStorage.getItem('dolarValues')));
     }
 }
