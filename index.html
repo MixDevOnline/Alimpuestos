@@ -125,8 +125,10 @@
                                 onclick="calcularTotal()">Calcular</button>
                         </div>
                         <div class="divider">Resultado</div>
-                        <p class="title is-5">Total a Pagar</p>
-                        <p class="title is-2" id="total" style="color: #fd9900;">AR$ 0</h2>
+                        <p class="title is-5">Total a Pagar al Realizar la Compra</p>
+                        <p class="title is-2" id="subtotal" style="color: #fd9900;">AR$ 0</h2>
+                        <p class="title is-6">Total a Pagar (+ excedente y tasas)</p>
+                        <p class="title is-5" id="total" style="color: #fd9900;">AR$ 0</h2>
                         <div class="divider">Detalles</div>
                         <ul class="box has-text-left">
                             <li class="is-flex is-justify-content-space-between">
@@ -147,6 +149,11 @@
                             <li class="is-flex is-justify-content-space-between">
                                 <span>+ Imp. Bienes Personales (25%)</span>
                                 <span class="is-pulled-right" id="impBienesPersonales">$0</span>
+                            </li>
+                            <hr>
+                            <li class="is-flex is-justify-content-space-between">
+                                <span>+ VEP (Tasa del Correo)</span>
+                                <span class="is-pulled-right" id="vep">$0</span>
                             </li>
                             <hr>
                             <li class="is-flex is-justify-content-space-between">
