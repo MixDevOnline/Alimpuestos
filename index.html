@@ -21,6 +21,7 @@
     <meta name="google-site-verification" content="tz0YynZQ61E3HRtZxp1iZCDc7P4GbMwRP8m0_2GvMls" />
     <!-- Favicon Icon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="assets/css/bulma.min.css">
     <!-- Bulma Divider -->
@@ -28,8 +29,12 @@
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="assets/css/solid.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="assets/css/select2.min.css">
     <!-- Own Style -->
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    
 </head>
 
 <body>
@@ -68,8 +73,8 @@
                         <div class="divider">Banco a usar</div>
                         <div class="field">
                             <div class="control">
-                                <div class="select">
-                                    <select id="bancoSelect" name="dolar" onchange="changeDolar()">
+                                <div>
+                                    <select id="bancoSelect" name="dolar" onchange="changeDolar()" style="width: 50%">
                                     </select>
                                 </div>
                             </div>
@@ -173,10 +178,13 @@
             </div>
         </div>
     </div>
+    <!-- JQuery -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Select2 -->
+    <script src="assets/js/select2.min.js"></script>
     <!-- Custom Scripts -->
     <script src="assets/js/dolar.js"></script>
     <script src="assets/js/calculadora.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
-
 </html>
