@@ -21,7 +21,6 @@
     <meta name="google-site-verification" content="tz0YynZQ61E3HRtZxp1iZCDc7P4GbMwRP8m0_2GvMls" />
     <!-- Favicon Icon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
     <!-- Bulma CSS -->
     <link rel="stylesheet" href="assets/css/bulma.min.css">
     <!-- Bulma Divider -->
@@ -33,11 +32,46 @@
     <link rel="stylesheet" href="assets/css/select2.min.css">
     <!-- Own Style -->
     <link rel="stylesheet" href="assets/css/style.css">
-    
-    
 </head>
 
 <body>
+    <!-- Modal Selector -->
+    <div class="modal pr-5 pl-5">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Modificar Valor Total</p>
+            </header>
+            <section class="modal-card-body">
+                <p class="help is-info mb-3">En este apartado se puede modificar el total de la calculadora agregando o
+                    quitando valores.</p>
+                <div class="field">
+                    <div class="control">
+                        <div>
+                            <select id="valores" multiple style="width: 100%">
+                                <option value="montoSinImpuestos" selected>Monto sin impuestos (+ envío)</option>
+                                <option value="impPais" selected>Imp. PAIS</option>
+                                <option value="impGanancia" selected>Imp. Ganancias</option>
+                                <option value="impBienesPersonales" selected>Imp. Bienes Personales</option>
+                                <option value="vep" selected>VEP (Tasa del Correo)</option>
+                                <option value="excedente" selected>Excedente</option>
+                            </select>
+                            <p class="help is-danger">Los valores que dejes son los que se mostrarán en el total, no se
+                                modificarán los valores del detalle.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button" style="background-color: #fd9900; color: white;"
+                    onclick="modificarTotal()">Modificar</button>
+                <button class="button is-danger" onclick="restablecerModal()">Restablecer valores</button>
+                <button class="button ml-auto" onclick="cerrarModal()">Cancelar</button>
+            </footer>
+        </div>
+    </div>
+    <!-- End Modal Selector -->
+    <!-- Main Content-->
     <div class="columns is-centered mt-5 mr-1 ml-1">
         <div
             class="column is-two-fifths has-text-centered is-horizontal-center is-6-fullhd is-8-desktop is-9-tablet is-12-mobile">
@@ -50,12 +84,18 @@
                     </p>
                 </div>
                 <div class="card-content" style="background-color: #f5f5f5;">
+                    <!-- Loader -->
                     <div class="loader-wrapper is-active" id="loader">
                         <div class="loader is-loading"></div>
                     </div>
+                    <!-- End Loader -->
+                    <!-- Calculator -->
                     <section id="calculadora" style="display: none;">
+                        <!-- Description -->
                         <p class="subtitle is-5">¿No sabes cuánto vas a terminar pagando por un producto?</p>
                         <p class="subtitle is-6">Esta calculadora es la solución que buscas.</p>
+                        <!-- End Description -->
+                        <!-- Product Value -->
                         <div class="divider">Valor del Producto</div>
                         <div class="field has-addons has-addons-centered">
                             <p class="control has-icons-left">
@@ -70,6 +110,8 @@
                                 </a>
                             </p>
                         </div>
+                        <!-- End Product Value -->
+                        <!-- Banks -->
                         <div class="divider">Banco a usar</div>
                         <div class="field">
                             <div class="control">
@@ -81,6 +123,8 @@
                         </div>
                         <p class="help is-success dark">El valor estimado del dólar de este banco a
                             la fecha (<span id="fecha">00/00/0000</span>) es de AR$ <span id="dolar">0</span>.</p>
+                        <!-- End Banks -->
+                        <!-- Shipping Cost -->
                         <div class="divider">Costo de Envío</div>
                         <div class="field has-addons has-addons-centered">
                             <p class="control has-icons-left">
@@ -96,6 +140,8 @@
                             </p>
                         </div>
                         <p class="help is-info mb-3">Si el envío es gratis, escriba 0.</p>
+                        <!-- End Shipping Cost -->
+                        <!-- Annual Purchase -->
                         <div class="divider">¿Ha realizado más de 12 compras este año?</div>
                         <div class="field">
                             <div class="control">
@@ -107,6 +153,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- End Annual Purchase -->
+                        <!-- VEP -->
                         <div class="divider">Tasa del Correo</div>
                         <div class="field has-addons has-addons-centered">
                             <p class="control has-icons-left">
@@ -125,47 +173,54 @@
                         <p class="help is-danger mb-3">Este valor está predeterminado a AR$ <span
                                 id="tasaSpan">0</span>.
                             Solo cambie este valor si es necesario.</p>
+                        <!-- End VEP -->
+                        <!-- Calculate Button -->
                         <div class="field">
                             <button class="button is-fullwidth" style="background-color: #fd9900; color: white;"
                                 onclick="calcularTotal()">Calcular</button>
                         </div>
+                        <!-- End Calculate Button -->
+                        <!-- Result -->
                         <div class="divider">Resultado</div>
-                        <p class="title is-5">Total a Pagar al Realizar la Compra</p>
-                        <p class="title is-2" id="subtotal" style="color: #fd9900;">AR$ 0</h2>
-                        <p class="title is-6">Total a Pagar (+ excedente y tasas)</p>
-                        <p class="title is-5" id="total" style="color: #fd9900;">AR$ 0</h2>
+                        <p class="title is-5">Total a Pagar</p>
+                        <p class="title is-2" style="color: #fd9900;"><span id="total">AR$ 0,00</span> <button
+                                onclick="modificarTotalModal()" class="is-edit"> <i
+                                    class="fa-solid fa-pen-to-square"></i></button></p>
+                        <!-- End Result -->
+                        <!-- Details -->
                         <div class="divider">Detalles</div>
                         <ul class="box has-text-left">
                             <li class="is-flex is-justify-content-space-between">
                                 <span>Monto sin impuestos (+ envío)</span>
-                                <span class="is-pulled-right" id="montoSinImpuestos">$0</span>
+                                <span class="is-pulled-right" id="montoSinImpuestos">$0,00</span>
                             </li>
                             <hr>
                             <li class="is-flex is-justify-content-space-between">
                                 <span>+ Imp. PAIS (30%)</span>
-                                <span class="is-pulled-right" id="impPais">$0</span>
+                                <span class="is-pulled-right" id="impPais">$0,00</span>
                             </li>
                             <hr>
                             <li class="is-flex is-justify-content-space-between">
                                 <span>+ Imp. Ganancias (45%)</span>
-                                <span class="is-pulled-right" id="impGanancia">$0</span>
+                                <span class="is-pulled-right" id="impGanancia">$0,00</span>
                             </li>
                             <hr>
                             <li class="is-flex is-justify-content-space-between">
                                 <span>+ Imp. Bienes Personales (25%)</span>
-                                <span class="is-pulled-right" id="impBienesPersonales">$0</span>
+                                <span class="is-pulled-right" id="impBienesPersonales">$0,00</span>
                             </li>
                             <hr>
                             <li class="is-flex is-justify-content-space-between">
                                 <span>+ VEP (Tasa del Correo)</span>
-                                <span class="is-pulled-right" id="vep">$0</span>
+                                <span class="is-pulled-right" id="vep">$0,00</span>
                             </li>
                             <hr>
                             <li class="is-flex is-justify-content-space-between">
                                 <span>+ Monto del Excedente</span>
-                                <span class="is-pulled-right" id="excedente">$0</span>
+                                <span class="is-pulled-right" id="excedente">$0,00</span>
                             </li>
                         </ul>
+                        <!-- End Details -->
                         <br>
                         <!-- Footer -->
                         <p>Hecho con mucho <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="#ff2900"
@@ -173,18 +228,26 @@
                                 <path fill-rule="evenodd"
                                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
                             </svg> por <a href="https://github.com/mixdevcode" target="_blank">MixDevCode</a></p>
+                        <!-- End Footer -->
                 </div>
                 </section>
+                <!-- End Calculator -->
             </div>
         </div>
     </div>
+    <!-- End Main Content -->
+
+    <!----- Scripts ----->
     <!-- JQuery -->
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <!-- Select2 -->
     <script src="assets/js/select2.min.js"></script>
     <!-- Custom Scripts -->
     <script src="assets/js/dolar.js"></script>
+    <script src="assets/js/modal.js"></script>
     <script src="assets/js/calculadora.js"></script>
     <script src="assets/js/main.js"></script>
+    <!----- End Scripts ----->
 </body>
+
 </html>

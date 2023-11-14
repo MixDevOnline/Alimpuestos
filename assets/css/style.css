@@ -10,6 +10,16 @@ p.help {
   font-size: 10.5pt;
 }
 
+.is-edit {
+  background: none;
+	color: #3e8ed0;
+  font-size: 12.5pt;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	outline: inherit;
+}
+
 p.is-success.dark {
   color: #0fa723;
 }
@@ -62,6 +72,10 @@ p.is-success.dark {
 .select2-container .select2-dropdown {
   border: 1px solid #dbdbdb !important;
   border-top: 0 !important;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: #fd9900;
 }
 .select2-container .select2-dropdown .select2-search {
   margin: 5px;
