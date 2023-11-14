@@ -41,6 +41,7 @@
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">Modificar Valor Total</p>
+                <button class="delete" aria-label="close" onclick="restablecerModal()"></button>
             </header>
             <section class="modal-card-body">
                 <p class="help is-info mb-3">En este apartado se puede modificar el total de la calculadora agregando o
@@ -63,10 +64,11 @@
                 </div>
             </section>
             <footer class="modal-card-foot">
-                <button class="button" style="background-color: #fd9900; color: white;"
-                    onclick="modificarTotal()">Modificar</button>
-                <button class="button is-danger" onclick="restablecerModal()">Restablecer valores</button>
-                <button class="button ml-auto" onclick="cerrarModal()">Cancelar</button>
+                <div class="butttons">
+                    <button class="button" style="background-color: #fd9900; color: white;"
+                        onclick="modificarTotal()">Modificar</button>
+                    <button class="button is-danger" onclick="restablecerModal()">Restablecer valores</button>
+                </div>
             </footer>
         </div>
     </div>
