@@ -14,6 +14,10 @@ label.help {
   font-size: 10.5pt;
 }
 
+a {
+  color: #31419B;
+}
+
 .is-edit {
   background: none;
 	color: #3e8ed0;
