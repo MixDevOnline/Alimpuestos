@@ -41,11 +41,11 @@
         <div class="modal-card">
             <header class="modal-card-head">
                 <p class="modal-card-title">Modificar Valor Total</p>
-                <button class="delete" aria-label="close" onclick="cerrarModal()"></button>
+                <button class="delete" aria-label="Cerrar" onclick="cerrarModal()"></button>
             </header>
             <section class="modal-card-body">
-                <p class="help is-info mb-3">En este apartado se puede modificar el total de la calculadora agregando o
-                    quitando valores.</p>
+                <label for="valores" class="help is-info mb-3">En este apartado se puede modificar el total de la calculadora agregando o
+                    quitando valores.</label>
                 <div class="field">
                     <div class="control">
                         <div>
@@ -98,23 +98,23 @@
                         <p class="subtitle is-6">Esta calculadora es la solución que buscas.</p>
                         <!-- End Description -->
                         <!-- Product Value -->
-                        <div class="divider">Valor del Producto</div>
+                        <label class="divider" for="valor">Valor del Producto</label>
                         <div class="field has-addons has-addons-centered">
                             <p class="control has-icons-left">
-                                <input class="input" name="valor" type="number" placeholder="0" value="0" step="0.01">
+                                <input class="input" name="valor" type="number" id="valor" placeholder="0" value="0" step="0.01">
                                 <span class="icon is-small is-left">
                                     <i class="fa-solid fa-dollar-sign"></i>
                                 </span>
                             </p>
                             <p class="control">
-                                <a class="button is-static">
+                                <button class="button is-static">
                                     USD
-                                </a>
+                                </button>
                             </p>
                         </div>
                         <!-- End Product Value -->
                         <!-- Banks -->
-                        <div class="divider">Banco a usar</div>
+                        <label for="bancoSelect" class="divider">Banco a usar</label>
                         <div class="field">
                             <div class="control">
                                 <div>
@@ -127,28 +127,28 @@
                             la fecha (<span id="fecha">00/00/0000</span>) es de AR$ <span id="dolar">0</span>.</p>
                         <!-- End Banks -->
                         <!-- Shipping Cost -->
-                        <div class="divider">Costo de Envío</div>
+                        <label for="costo" class="divider">Costo de Envío</label>
                         <div class="field has-addons has-addons-centered">
                             <p class="control has-icons-left">
-                                <input class="input" type="number" name="costo" placeholder="0" value="0" step="0.01">
+                                <input class="input" type="number" name="costo" id="costo" placeholder="0" value="0" step="0.01">
                                 <span class="icon is-small is-left">
                                     <i class="fa-solid fa-dollar-sign"></i>
                                 </span>
                             </p>
                             <p class="control">
-                                <a class="button is-static">
+                                <button class="button is-static">
                                     USD
-                                </a>
+                                </button>
                             </p>
                         </div>
                         <p class="help is-info mb-3">Si el envío es gratis, escriba 0.</p>
                         <!-- End Shipping Cost -->
                         <!-- Annual Purchase -->
-                        <div class="divider">¿Ha realizado más de 12 compras este año?</div>
+                        <label class="divider" for="anuales">¿Ha realizado más de 12 compras este año?</label>
                         <div class="field">
                             <div class="control">
                                 <div class="select">
-                                    <select name="anuales">
+                                    <select name="anuales" id="anuales">
                                         <option value="no" selected>No</option>
                                         <option value="si">Si</option>
                                     </select>
@@ -157,7 +157,7 @@
                         </div>
                         <!-- End Annual Purchase -->
                         <!-- VEP -->
-                        <div class="divider">Tasa del Correo</div>
+                        <label class="divider" for="tasa">Tasa del Correo</label>
                         <div class="field has-addons has-addons-centered">
                             <p class="control has-icons-left">
                                 <input class="input" type="number" name="tasa" id="tasa" placeholder="0" value="0"
@@ -186,7 +186,7 @@
                         <div class="divider">Resultado</div>
                         <p class="title is-5">Total a Pagar</p>
                         <p class="title is-2" style="color: #fd9900;"><span id="total">AR$ 0,00</span> <button
-                                onclick="modificarTotalModal()" class="is-edit"> <i
+                                onclick="modificarTotalModal()" aria-label="Modificar el valor total" class="is-edit"> <i
                                     class="fa-solid fa-pen-to-square"></i></button></p>
                         <!-- End Result -->
                         <!-- Details -->

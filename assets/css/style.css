@@ -10,6 +10,10 @@ p.help {
   font-size: 10.5pt;
 }
 
+label.help {
+  font-size: 10.5pt;
+}
+
 .is-edit {
   background: none;
 	color: #3e8ed0;
