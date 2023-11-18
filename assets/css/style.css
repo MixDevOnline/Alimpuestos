@@ -18,6 +18,23 @@ a {
   color: #31419B;
 }
 
+.list-item:first-child {
+  padding-top: 0px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid #f5f5f5;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0px;
+}
+
 .is-edit {
   background: none;
 	color: #3e8ed0;
