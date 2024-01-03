@@ -19,6 +19,12 @@
         content="Calculadora de Impuestos. Calcula cuánto vas a pagar por un producto, incluyendo impuestos y tasas.">
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="tz0YynZQ61E3HRtZxp1iZCDc7P4GbMwRP8m0_2GvMls" />
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#fd9900">
+    <meta name="application-name" content="Alimpuestos">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Alimpuestos">
+    <meta name="mobile-web-app-capable" content="yes">
     <!-- Manifest -->
     <link rel="manifest" href="/site.webmanifest">
     <!-- Favicon Icon -->
@@ -268,6 +274,17 @@
     <script src="assets/js/modal.js"></script>
     <script src="assets/js/calculadora.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('assets/js/sw.js')
+                .then(function(registration) {
+                console.log('Service Worker registrado con éxito:', registration);
+                })
+                .catch(function(error) {
+                console.log('Error al registrar el Service Worker:', error);
+                });
+        }
+    </script>
     <!----- End Scripts ----->
 </body>
 
