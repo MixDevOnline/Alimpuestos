@@ -274,17 +274,6 @@
     <script src="assets/js/modal.js"></script>
     <script src="assets/js/calculadora.js"></script>
     <script src="assets/js/main.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('assets/js/sw.js')
-                .then(function(registration) {
-                console.log('Service Worker registrado con éxito:', registration);
-                })
-                .catch(function(error) {
-                console.log('Error al registrar el Service Worker:', error);
-                });
-        }
-    </script>
     <!----- End Scripts ----->
 </body>
 

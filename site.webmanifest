@@ -5,8 +5,9 @@
     "theme-color": "#fd9900",
     "background_color": "#fd9900",
     "display": "standalone",
-    "start_url": "/",
-    "scope": "/",
+    "start_url": "./",
+    "scope": "./",
+    "id": "alimpuestos",
     "icons": [
         {
             "src": "assets/img/android-chrome-512x512.png",
