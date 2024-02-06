@@ -150,9 +150,12 @@
                                 </span>
                             </p>
                             <p class="control">
-                                <button class="button is-static">
-                                    USD
-                                </button>
+                                <div class="select">
+                                    <select name="moneda" id="moneda">
+                                        <option value="USD" selected>USD</option>
+                                        <option value="ARS">ARS</option>
+                                    </select>
+                                </div>
                             </p>
                         </div>
                         <!-- End Product Value -->
@@ -249,6 +252,8 @@
                         <!-- End Oficial Value -->
                         <!-- Nacion Value -->
                         <input type="hidden" id="dolarNacion" value="">
+                        <!-- AliExpress Value -->
+                        <input type="hidden" id="dolarAliExpress" value="">
                         <!-- IsHistory -->
                         <input type="hidden" id="esHistorial" value="">
                         <!-- End IsHistory -->
