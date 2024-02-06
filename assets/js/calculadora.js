@@ -1,1 +1,79 @@
-const valorImpPais=.3,valorImpGanancia=.3,valorImpBienesPersonales=0,billeteras=["Ual\xe1","MercadoPago"];function calcularTotal(){let a=$("#moneda").val()||"USD",e=parseFloat($('input[name="valor"]').val()||0),t=parseFloat($('input[name="costo"]').val()||0),l=parseFloat($('input[name="descuento"]').val()||0);if("ARS"==a){let o=parseFloat($("#dolarAliExpress").val()||0);e/=o,t>0&&(t/=o),l>0&&(l/=o)}Number(l).toFixed(2),Number(t).toFixed(2),Number(e).toFixed(2);let n=$('select[name="anuales"]').val(),i=parseFloat($('input[name="tasa"]').val()||tasa),s=parseFloat($("#bancoSelect").val()||0),r=parseFloat($("#dolarOficial").val()||0),m=parseFloat($("#dolarNacion").val()||0),c=$("#esHistorial").val(),v=$("#bancoSelect option:selected").text();e>0&&e+t>=l&&(montoSinImpuestos=(e+t-l)*s,impPais=(montoNacion=billeteras.includes(v)?(e+t-l)*m:0)>0?.3*montoNacion:.3*montoSinImpuestos,impGanancia=montoNacion>0?.3*montoNacion:.3*montoSinImpuestos,impBienesPersonales=montoNacion>0?0*montoNacion:0*montoSinImpuestos,total=montoSinImpuestos+impPais+impGanancia+impBienesPersonales+i+(excedente="si"===n?(e+t-l)*.5*r:e+t>50?(e+t-l-50)*.5*r:0),$("#total").text(`AR${formatoMoneda.format(total)}`),$("#montoSinImpuestos").text(`AR${formatoMoneda.format(montoSinImpuestos)}`),$("#impPais").text(`AR${formatoMoneda.format(impPais)}`),$("#impGanancia").text(`AR${formatoMoneda.format(impGanancia)}`),$("#impBienesPersonales").text(`AR${formatoMoneda.format(impBienesPersonales)}`),$("#vep").text(`AR${formatoMoneda.format(i)}`),$("#excedente").text(`AR${formatoMoneda.format(excedente)}`),modificarTotal(),"false"===c&&guardarEnHistorial())}
+// Constantes necesarias
+const valorImpPais = 0.3;
+const valorImpGanancia = 0.3;
+const valorImpBienesPersonales = 0;
+const billeteras = ["Ualá", "MercadoPago"];
+
+function calcularTotal() {
+  // Obtener los valores de entrada con jQuery
+  const moneda = $("#moneda").val() || "USD";
+  let valorProducto = parseFloat($('input[name="valor"]').val() || 0);
+  let costoEnvio = parseFloat($('input[name="costo"]').val() || 0);
+  let descuento = parseFloat($('input[name="descuento"]').val() || 0);
+  if(moneda == "ARS") {
+    let dolarAliExpress = parseFloat($("#dolarAliExpress").val() || 0);
+    valorProducto = valorProducto / dolarAliExpress;
+    if(costoEnvio > 0) {
+      costoEnvio = costoEnvio / dolarAliExpress;
+    }
+    if(descuento > 0) {
+      descuento = descuento / dolarAliExpress;
+    }
+  }
+  // No sé por qué esto está así pero así funciona ;)
+  Number(descuento).toFixed(2);
+  Number(costoEnvio).toFixed(2);
+  Number(valorProducto).toFixed(2);
+
+  const anuales = $('select[name="anuales"]').val();
+  const tasaInput = parseFloat($('input[name="tasa"]').val() || tasa);
+  const valorDolar = parseFloat($("#bancoSelect").val() || 0);
+  const dolarOficial = parseFloat($("#dolarOficial").val() || 0);
+  const dolarNacion = parseFloat($("#dolarNacion").val() || 0);
+  const esHistorial = $("#esHistorial").val();
+  const bancoSelect = $("#bancoSelect option:selected").text();
+
+  if (valorProducto > 0 && valorProducto + costoEnvio >= descuento) {
+    montoSinImpuestos = (valorProducto + costoEnvio - descuento) * valorDolar;
+    montoNacion = billeteras.includes(bancoSelect) ? (valorProducto + costoEnvio - descuento) * dolarNacion : 0;
+
+    impPais = montoNacion > 0 ? montoNacion * valorImpPais : montoSinImpuestos * valorImpPais;
+    impGanancia = montoNacion > 0 ? montoNacion * valorImpGanancia : montoSinImpuestos * valorImpGanancia;
+    impBienesPersonales = montoNacion > 0 ? montoNacion * valorImpBienesPersonales : montoSinImpuestos * valorImpBienesPersonales;
+
+    if (anuales === "si")
+      excedente = (valorProducto + costoEnvio - descuento) * 0.5 * dolarOficial;
+    else if (valorProducto + costoEnvio > 50)
+      excedente =
+        (valorProducto + costoEnvio - descuento - 50) * 0.5 * dolarOficial;
+    else excedente = 0;
+
+    total =
+      montoSinImpuestos +
+      impPais +
+      impGanancia +
+      impBienesPersonales +
+      tasaInput +
+      excedente;
+  } else {
+    return;
+  }
+
+  $("#total").text(`AR${formatoMoneda.format(total)}`);
+  $("#montoSinImpuestos").text(`AR${formatoMoneda.format(montoSinImpuestos)}`);
+  $("#impPais").text(`AR${formatoMoneda.format(impPais)}`);
+  $("#impGanancia").text(`AR${formatoMoneda.format(impGanancia)}`);
+  $("#impBienesPersonales").text(
+    `AR${formatoMoneda.format(impBienesPersonales)}`
+  );
+  $("#vep").text(`AR${formatoMoneda.format(tasaInput)}`);
+  $("#excedente").text(`AR${formatoMoneda.format(excedente)}`);
+
+  // Aplicar los filtros de valores
+  modificarTotal();
+
+  if (esHistorial === "false") {
+    // Guardar en el historial
+    guardarEnHistorial();
+  }
+}
