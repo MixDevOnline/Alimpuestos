@@ -47,5 +47,5 @@ Alimpuestos es una calculadora que te permite saber cuánto vas a terminar pagan
 
 [Creá un issue](https://github.com/MixDevOnline/Alimpuestsos/issues)
 
-## Push Request
-¿Querés mejorar el código? Forkeá el repositorio, modificá el código, crea un push request, lo evalúo y si está todo excelente y mejora el rendimiento u ofrece nuevas características se agrega a la web!
+## Colaboración
+¿Querés mejorar el código? Forkeá el repositorio, modificá el código, crea un pull request, lo evalúo y si está todo excelente y mejora el rendimiento u ofrece nuevas características se agrega a la web!
