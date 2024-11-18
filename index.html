@@ -26,7 +26,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SB4E3HL275"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-SB4E3HL275');
@@ -120,6 +120,12 @@
         </div>
     </div>
     <!-- End Modal History -->
+    <!-- TEMPORAL NOTIFICATION FOR DOMAIN CHANGES-->
+    <div class="notification is-danger" style="text-align:center;border-radius: 0px;">
+        <button class="delete"></button>
+        <strong>ATENCIÓN: </strong>El dominio <a href="https://alimpuestos.com.ar" style="text-decoration: none;">alimpuestos.com.ar</a> vence el día 07/12/2024, posterior a eso debido a temas económicos pasará a tener otro dominio. Se estará comunicando el nuevo dominio en los próximos días.
+        <br><b>¡Gracias por seguir eligiendo esta calculadora!</b>
+    </div>
     <!-- Main Content-->
     <div class="columns is-centered mr-1 ml-1" style="text-align: center;">
         <div
@@ -160,12 +166,12 @@
                                 </span>
                             </p>
                             <p class="control">
-                                <div class="select">
-                                    <select name="moneda" id="moneda">
-                                        <option value="USD" selected>USD</option>
-                                        <option value="ARS">ARS</option>
-                                    </select>
-                                </div>
+                            <div class="select">
+                                <select name="moneda" id="moneda">
+                                    <option value="USD" selected>USD</option>
+                                    <option value="ARS">ARS</option>
+                                </select>
+                            </div>
                             </p>
                         </div>
                         <!-- End Product Value -->
@@ -338,6 +344,18 @@
     <script src="assets/js/historial.js"></script>
     <script src="assets/js/app.js"></script>
     <!----- End Scripts ----->
+    <!-- End of Domain SCRIPT (Temporal) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                const $notification = $delete.parentNode;
+
+                $delete.addEventListener('click', () => {
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
