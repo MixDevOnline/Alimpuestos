@@ -1,13 +1,13 @@
 {
-    "name": "Alimpuestos",
-    "short_name": "Alimpuestos",
+    "name": "ParaImportar",
+    "short_name": "ParaImportar",
     "description": "Calculadora de Impuestos. Calcula cuánto vas a pagar por un producto, incluyendo impuestos y tasas.",
     "theme-color": "#234a85",
     "background_color": "#234a85",
     "display": "standalone",
     "start_url": "./",
     "scope": "./",
-    "id": "alimpuestos",
+    "id": "paraimportar",
     "icons": [
         {
             "src": "assets/img/android-chrome-512x512.png",
