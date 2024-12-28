@@ -7,11 +7,7 @@ body {
 }
 
 .logo {
-  font-family: 'Ubuntu', sans-serif;
-  color: #fd9900;
-  font-weight: 500;
-  font-size: 3.5rem;
-  margin-top: 12px;
+  margin: 0 auto;
 }
 
 .is-horizontal-center {
@@ -112,7 +108,7 @@ p.is-success.dark {
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-  background-color: #fd9900;
+  background-color: #234a85;
 }
 .select2-container .select2-dropdown .select2-search {
   margin: 5px;

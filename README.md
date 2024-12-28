@@ -1,10 +1,10 @@
-![Alimpuestos](https://github.com/MixDevOnline/Alimpuestos/blob/main/assets/img/banner.png)
+![ParaImportar](https://github.com/MixDevOnline/ParaImportar/blob/main/assets/img/banner.png)
 
-![GitHub Repo stars](https://img.shields.io/github/stars/MixDevOnline/Alimpuestos?label=Stars)
+![GitHub Repo stars](https://img.shields.io/github/stars/MixDevOnline/ParaImportar?label=Stars)
 ![Usuarios](https://img.shields.io/badge/Usuarios-+3000-informational)
 
-# Alimpuestos
-Alimpuestos es una calculadora que te permite saber cuánto vas a terminar pagando por un producto en tiendas como Wish, Amazon, Aliexpress, Ebay, etc. incluyendo impuestos y tasas aduaneras.
+# ParaImportar
+ParaImportar es una calculadora que te permite saber cuánto vas a terminar pagando por un producto en tiendas como Wish, Amazon, Aliexpress, Ebay, etc. incluyendo impuestos y tasas aduaneras.
 
 [![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_3.svg)](https://cafecito.app/alimpuestos)
 
@@ -45,7 +45,7 @@ Alimpuestos es una calculadora que te permite saber cuánto vas a terminar pagan
 ## Reporte de Bugs, Sugerencias y Mejoras
 ¿Encontraste un bug o tenés un problema para usar la extensión?
 
-[Creá un issue](https://github.com/MixDevOnline/Alimpuestsos/issues)
+[Creá un issue](https://github.com/MixDevOnline/ParaImportar/issues)
 
 ## Colaboración
 ¿Querés mejorar el código? Forkeá el repositorio, modificá el código, crea un pull request, lo evalúo y si está todo excelente y mejora el rendimiento u ofrece nuevas características se agrega a la web!

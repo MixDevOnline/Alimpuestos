@@ -3,7 +3,6 @@ const tasa = 7600;
 $("#tasa").val(7600), $("#tasaSpan").text(7600);
 let total = 0,
   montoSinImpuestos = 0,
-  impPais = 0,
   impGanancia = 0,
   impBienesPersonales = 0,
   excedente = 0,
