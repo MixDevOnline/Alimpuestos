@@ -33,7 +33,7 @@ ParaImportar es una calculadora que te permite saber cuánto vas a terminar paga
 
 ***
 
-## ¿Te quedan dudas acerca de si usar o no Alimpuestos? Mirá las razones del por qué es una excelente opción a tener en cuenta:
+## ¿Te quedan dudas acerca de si usar o no ParaImportar? Mirá las razones del por qué es una excelente opción a tener en cuenta:
 - Te ahorrás de calcularlo todo a mano, teniendo en cuenta de que vas a tener que preguntar por el valor de la tasa del correo que últimamente viene cambiando cada semana.
 - Al tener historial, podés saber cuanto valía lo que querías comprar al momento de realizar el cálculo.
 - La mayoría de páginas web sólo te indican el precio del dólar oficial, por lo que a eso siempre vas a tener que sumarle mucha más plata.
