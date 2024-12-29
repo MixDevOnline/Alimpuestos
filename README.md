@@ -6,7 +6,7 @@
 # ParaImportar
 ParaImportar es una calculadora que te permite saber cuánto vas a terminar pagando por un producto en tiendas como Wish, Amazon, Aliexpress, Ebay, etc. incluyendo impuestos y tasas aduaneras.
 
-[![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_3.svg)](https://cafecito.app/alimpuestos)
+[![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_3.svg)](https://cafecito.app/paraimportar)
 
 ***
 
