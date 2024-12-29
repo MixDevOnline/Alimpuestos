@@ -136,3 +136,17 @@ p.is-success.dark {
     top: 72px;
   }
 }
+
+.banner-ad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.banner-ad iframe {
+  max-width: 100%;
+}
